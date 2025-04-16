@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dictionary - Mini Dictionary</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding-top: 60px; /* Make space for fixed navbar */
+      padding-bottom: 20px; /* Add space at the bottom */
+    }
+
+    /* Navbar Styles */
+    nav {
+      background-color: #007bff;
+      padding: 15px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-right: 20px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 20px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    /* Content Area */
+    .container {
+      padding: 100px 20px;
+      max-width: 700px;
+      margin: auto;
+      text-align: center;
+    }
+
+    /* Back Button Styles */
+    .back-btn {
+      color: #ffc107;
+      background-color: transparent;
+      border: 2px solid #ffc107;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 16px;
+      margin-top: 20px;
+      display: inline-block;
+    }
+
+    .back-btn:hover {
+      background-color: #ffc107;
+      color: black;
+    }
+
+    /* Search Bar Styles */
+    .search-container {
+      margin-top: 20px;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      padding: 12px;
+      font-size: 18px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button {
+      padding: 12px 20px;
+      margin-left: 10px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Search Result Styles */
+    .result {
+      text-align: left;
+      margin-top: 25px;
+    }
+
+    .word {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .part-of-speech {
+      font-style: italic;
+      color: #555;
+    }
+
+    .definition {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+
+    /* Error Message Styles */
+    .error {
+      color: red;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="dictionary.html">Dictionary</a>
+    <a href="about.html">About</a>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+    <h1>📘 Welcome to the Mini Dictionary</h1>
+
+    <!-- Search Bar for Dictionary -->
+    <div class="search-container">
+      <input type="text" id="wordInput" placeholder="e.g., serendipity" />
+      <button onclick="lookupWord()">Search</button>
+    </div>
+
+    <!-- Search Result or Error Message -->
+    <div id="result" class="result"></div>
+    <div id="error" class="error"></div>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-btn">← Back to Home</a>
+  </div>
+
+  <script>
+    async function lookupWord() {
+      const word = document.getElementById('wordInput').value.trim();
+      const resultDiv = document.getElementById('result');
+      const errorDiv = document.getElementById('error');
+
+      resultDiv.innerHTML = "";
+      errorDiv.innerText = "";
+
+      if (!word) {
+        errorDiv.innerText = "Please enter a word.";
+        return;
+      }
+
+      try {
+        const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+        const data = await response.json();
+
+        if (data.title === "No Definitions Found") {
+          errorDiv.innerText = `Sorry, no definition found for "${word}".`;
+        } else {
+          const entry = data[0];
+          const meaning = entry.meanings[0];
+          const definition = meaning.definitions[0].definition;
+
+          resultDiv.innerHTML = `
+            <div class="word">${entry.word}</div>
+            <div class="part-of-speech">${meaning.partOfSpeech}</div>
+            <div class="definition">${definition}</div>
+          `;
+        }
+      } catch (err) {
+        errorDiv.innerText = "Something went wrong. Please try again.";
+      }
+    }
+  </script>
+</body>
+</html>
