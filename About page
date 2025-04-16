@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About - Mini Dictionary</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding-top: 60px; /* Make space for fixed navbar */
+      padding-bottom: 20px; /* Add space at the bottom */
+    }
+
+    /* Navbar Styles */
+    nav {
+      background-color: #007bff;
+      padding: 15px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-right: 20px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 20px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    /* Content Area */
+    .container {
+      padding: 100px 20px;
+      max-width: 700px;
+      margin: auto;
+      text-align: center;
+    }
+
+    /* Back Button Styles */
+    .back-btn {
+      color: #ffc107;
+      background-color: transparent;
+      border: 2px solid #ffc107;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 16px;
+      margin-top: 20px;
+      display: inline-block;
+    }
+
+    .back-btn:hover {
+      background-color: #ffc107;
+      color: black;
+    }
+
+    /* Paragraph Text */
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="dictionary.html">Dictionary</a>
+    <a href="about.html">About</a>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+    <h1>About This Dictionary</h1>
+    <p>This simple dictionary app helps you find the meaning of English words.</p>
+    <p>It uses the free DictionaryAPI to fetch real-time definitions from the internet.</p>
+    <p>Perfect for students, writers, and anyone curious about language!</p>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-btn">← Back to Home</a>
+  </div>
+</body>
+</html>
