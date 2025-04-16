@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Home - Mini Dictionary</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      text-align: center;
+      margin: 0;
+    }
+    nav {
+      background-color: #007bff;
+      padding: 15px;
+    }
+    nav a {
+      color: white;
+      margin: 0 20px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .container {
+      padding: 100px 20px;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+  
+    <a href="index.html">Home</a>
+    <a href="dictionary.html">Dictionary</a>
+    <a href="about.html">About</a>
+  </nav>
+  <div class="container">
+    <h1>📘 Welcome to the Mini Dictionary</h1>
+  <p>Use the navigation bar above to search for words or learn more about this site.</p>
+
+  </div>
+</body>
+</html>
